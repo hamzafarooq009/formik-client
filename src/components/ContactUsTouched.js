@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
 
-const ContactUsWithValidation = () => {
+const ContactUsTouched = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      email: "",
     },
     onSubmit: (values) => {
       console.log(values);
@@ -16,14 +15,6 @@ const ContactUsWithValidation = () => {
       // Validation logic for each field
       if (!values.name) {
         errors.name = "Required";
-      }
-
-      if (!values.email) {
-        errors.email = "Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
       }
 
       return errors;
@@ -39,25 +30,16 @@ const ContactUsWithValidation = () => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
-      {/* {console.log(formik.touched)} */}
-      {formik.touched.name && formik.errors.name ? (
+      {console.log(formik.touched)}
+      
+      {/* Touched and error */}
+      {/* {formik.touched.name && formik.errors.name ? (
         <div>{formik.errors.name}</div>
-      ) : null}
-
-      <input
-        type="email"
-        name="email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
-      ) : null}
+      ) : null} */}
 
       <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default ContactUsWithValidation;
+export default ContactUsTouched;
